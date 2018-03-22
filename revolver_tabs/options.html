@@ -138,6 +138,11 @@
             <span class="example">
                 <strong>Rotation will pause</strong> if the browser has been interacted with within 15 seconds.</span>
         </p>
+        <p>
+            <label for="webSocket">Get orders from web socket.</label>
+            <input type="text" id="webSocket" placeholder="ws://127.0.0.1:8080">
+            <span class="example">Add web socket url to switch tabs based on messages received.</span>
+        </p>
         <button id="save">Save</button>
         <span id="status"></span>
     </div>
@@ -146,24 +151,9 @@
             <span class="example">Select the checkbox to enable individual settings on a tab</span>
         </p>
     </div>
-    <fieldset>
-        <legend>Server Location</legend>
-        <div>
-            <label>URL:</label>
-            <input type="text" id="serverUrl" value="ws://" />
-            <button id="connectButton">Open</button>
-            <button id="disconnectButton">Close</button>
-        </div>
-        <div>
-            <label>Status:</label>
-            <span id="connectionStatus">CLOSED</span>
-        </div>
-    </fieldset>
     <p class="thanks">Special thanks for
         <a href="https://code.google.com/p/revolver-chrome-extensions/">open source code contributions</a> from Fred Emmott, Aurimas Liutikas and Wayne Goyer.</p>
 </body>
 <script src="options_script.js"></script>
-<script type="text/javascript" src="lib/jquery-1.4.3.min.js"></script>
-<script type="text/javascript" src="index.js"></script>
 
 </html>
