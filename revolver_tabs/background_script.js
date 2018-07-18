@@ -23,7 +23,7 @@ function openWebSocket(url) {
 	if (url != "") {
 		ws = new WebSocket(url);
 		ws.onopen = function (event) {
-			ws.send("I got connection");
+			ws.send("next");
 		}
 
 		ws.onerror = function (event) {
@@ -81,10 +81,23 @@ function closeWebSocket() {
 
 function onWebSocketMessage(event) {
 	var data = event.data;
-	alert(data);
 	switch (data) {
 		case "next":
-			moveTab(timerWindowId);
+			alert("nexting");
+			timerWindowId = tabSetting.seconds;
+			var nextTabIndex = 0;
+			chrome.tabs.getSelected(timerWindowId, function (currentTab) {
+				chrome.tabs.getAllInWindow(timerWindowId, function (tabs) {
+					if (currentTab.index + 1 < tabs.length) {
+						alert("true");
+						nextTabIndex = currentTab.index + 1;
+					} else {
+						alert("false");
+						nextTabIndex = 0;
+					}
+					activateTab(tabs[nextTabIndex]);
+				});
+			});
 			break;
 		case "previous":
 

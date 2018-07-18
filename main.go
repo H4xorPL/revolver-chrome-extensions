@@ -9,6 +9,25 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+type connection struct {
+    // The websocket connection.
+    ws *websocket.Conn
+
+    // Buffered channel of outbound messages.
+    send chan []byte
+
+    // The hub.
+    h *hub
+}
+
+type hub struct {
+    // Registered connections. That's a connection pool
+    connections map[*connection]bool
+
+    ...
+}
+
+
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
@@ -57,3 +76,5 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
+
+
